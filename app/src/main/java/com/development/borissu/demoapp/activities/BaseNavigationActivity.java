@@ -119,6 +119,21 @@ public class BaseNavigationActivity extends BaseActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent it = new Intent();
         switch (item.getItemId()) {
+            case R.id.nav_camera:
+                break;
+            case R.id.nav_album:
+
+
+                break;
+
+            case R.id.nav__listview:
+
+                break;
+
+            case R.id.nav_setting:
+                break;
+
+
             case R.id.nav_web_view:
                 it.setClass(this, WebViewActivity.class);
                 startActivity(it);

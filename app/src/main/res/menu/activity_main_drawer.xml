@@ -6,26 +6,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:title="相機" />
+            android:title="@string/nav_Camera" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="相簿" />
+            android:id="@+id/nav_album"
+            android:title="@string/nav_Album" />
         <item
-            android:id="@+id/nav_item_list"
-            android:title="列表" />
+            android:id="@+id/nav__listview"
+            android:title="@string/nav_ListView" />
         <item
             android:id="@+id/nav_web_view"
-            android:title="WebView" />
+            android:title="@string/nav_WebView" />
         <item
             android:id="@+id/nav_setting"
-            android:title="設定" />
-        <item android:title="123" />
-        <item android:title="123" />
-        <item android:title="123" />
-        <item android:title="123" />
-        <item android:title="123" />
-        <item android:title="123" />
-        <item android:title="123" />
+            android:title="@string/nav_Setting" />
+        <item
+            android:id="@+id/nav_popup_menu"
+            android:title="@string/nav_popupMenu"/>
+
     </group>
 
 

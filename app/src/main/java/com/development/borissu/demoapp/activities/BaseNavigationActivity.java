@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.development.borissu.demoapp.R;
+import com.development.borissu.demoapp.activities.camera.CameraActivity;
+import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 
 public class BaseNavigationActivity extends BaseActivity implements
         DrawerLayout.DrawerListener
@@ -118,14 +120,20 @@ public class BaseNavigationActivity extends BaseActivity implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent it = new Intent();
+        it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//
         switch (item.getItemId()) {
             case R.id.nav_camera:
+                it.setClass(this, CameraActivity.class);
+                startActivity(it);
                 break;
             case R.id.nav_album:
 
 
                 break;
-
+            case R.id.nav_spinner:
+                it.setClass(this, SpinnerActivity.class);
+                startActivity(it);
+                break;
             case R.id.nav__listview:
 
                 break;

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "366846954301",
+    "firebase_url": "https://my-app-server-181808.firebaseio.com",
+    "project_id": "my-app-server-181808",
+    "storage_bucket": "my-app-server-181808.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366846954301:android:75d4c616a44c29f2",
+        "android_client_info": {
+          "package_name": "com.development.borissu.demoapp.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366846954301-027qjh26vec1riruqkl0f65oh6ua7hsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkIU1PxzgnyQg4di3t4sU_dEF3vWQdI_M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,11 +9,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import com.development.borissu.demoapp.R;
-import com.development.borissu.demoapp.api.ApiManager;
-import com.development.borissu.demoapp.api.params.ApiParamGetDataList;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-public class MainActivity extends BaseNavigationActivity implements ApiUser {
+public class MainActivity extends BaseNavigationActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -41,25 +39,25 @@ public class MainActivity extends BaseNavigationActivity implements ApiUser {
         bundle.putString("User_name", name);
         mFirebaseAnalytics.logEvent("Test_Firebase", bundle);
     }
-
-    @OnClick(R.id.btn_call_api)
-    public void callApi() {
-        String name = "使用者名稱";
-        int id = 123456;
-        ApiParamGetDataList param = new ApiParamGetDataList(name, id);
-        ApiManager.callApi(this, this, param);
-    }
-
-    @Override
-    public void ApiCallBack(String index, Object o) {
-
-        switch (index) {
-            case "1":
-
-                String[] apidataArray = (String[]) o;
-                apiData.setText(index + apidataArray[0]);
-                break;
-        }
-
-    }
+//
+//    @OnClick(R.id.btn_call_api)
+//    public void callApi() {
+//        String name = "使用者名稱";
+//        int id = 123456;
+//        ApiParamGetDataList param = new ApiParamGetDataList(name, id);
+//        ApiManager.callApi(this, this, param);
+//    }
+//
+//    @Override
+//    public void ApiCallBack(String index, Object o) {
+//
+//        switch (index) {
+//            case "1":
+//
+//                String[] apidataArray = (String[]) o;
+//                apiData.setText(index + apidataArray[0]);
+//                break;
+//        }
+//
+//    }
 }

@@ -19,16 +19,15 @@ android {
             applicationIdSuffix ".debug"
             debuggable true
             versionNameSuffix "-debug"
-
         }
         dev {
-
+            debuggable true
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:design:27.1.1'
@@ -41,6 +40,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.0'
-
+    //GSon
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
 apply plugin: 'com.google.gms.google-services'

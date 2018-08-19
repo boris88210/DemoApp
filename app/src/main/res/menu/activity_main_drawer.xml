@@ -13,6 +13,14 @@
         <item
             android:id="@+id/nav__listview"
             android:title="@string/nav_ListView" />
+
+        <item
+            android:id="@+id/nav_behavior"
+            android:title="@string/nav_Behavior" />
+
+        <item
+            android:id="@+id/nav_asset"
+            android:title="@string/nav_Asset" />
         <item
             android:id="@+id/nav_spinner"
             android:title="@string/nav_Spinner" />
@@ -24,7 +32,7 @@
             android:title="@string/nav_Setting" />
         <item
             android:id="@+id/nav_popup_menu"
-            android:title="@string/nav_popupMenu"/>
+            android:title="@string/nav_popupMenu" />
 
     </group>
 

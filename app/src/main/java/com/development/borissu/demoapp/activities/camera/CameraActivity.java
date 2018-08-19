@@ -2,10 +2,14 @@ package com.development.borissu.demoapp.activities.camera;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -17,13 +21,16 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
+import android.os.Environment;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -99,6 +106,8 @@ import butterknife.OnClick;
  * status bar and navigation/system bar) with user interaction.
  */
 public class CameraActivity extends BaseActivity {
+
+
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -174,6 +183,9 @@ public class CameraActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_camera);
+        checkReadExteranlStoragePermission();
+
+        createImageGallery();
 
         mVisible = true;
 //        mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -248,6 +260,30 @@ public class CameraActivity extends BaseActivity {
     }
 
 
+    //Gallery
+
+    private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 0;
+
+
+    private void checkReadExteranlStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                    PackageManager.PERMISSION_GRANTED) {
+
+
+            } else {
+                if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    Toast.makeText(this, "App needs to view thumbnails", Toast.LENGTH_SHORT).show();
+                }
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CODE_READ_EXTERNAL_STORAGE);
+            }
+        } else {
+
+        }
+    }
+
+
     //Camera
 
 
@@ -259,8 +295,10 @@ public class CameraActivity extends BaseActivity {
 
     @BindView(R.id.fullscreen_content)
     TextureView mPreview;
-//    @BindView(R.id.gellery_recyclerview)
-//    RecyclerView mRecyclerView;
+    @BindView(R.id.gellery_recyclerview)
+    RecyclerView mRecyclerView;
+//    @BindView(R.id.img_picture)
+//    ImageView mPhotoCapturedImage;
 
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
 
@@ -271,8 +309,9 @@ public class CameraActivity extends BaseActivity {
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
-    private ImageView mPhotoCapturedImageView;
-    private String GALLERY_LOCATION = "image gallery";
+    @BindView(R.id.img_picture)
+    ImageView mPhotoCapturedImageView;
+    private String GALLERY_LOCATION = "gallery";
     private File mGalleryFolder;
 
     private Size mPreviewSize;
@@ -323,14 +362,14 @@ public class CameraActivity extends BaseActivity {
                     //不做任何事
                     break;
                 case STATE_WAIT_LOCK://對焦狀態
-                    Integer afState = result.get(CaptureResult.CONTROL_AE_STATE);
-                    if (afState == CaptureRequest.CONTROL_AF_STATE_FOCUSED_LOCKED) {
-//                        unLockFocus();
-//                        Log.d("Camera", "Focus Lock Success!");
-//                        Toast.makeText(getApplicationContext(), "對焦成功", Toast.LENGTH_SHORT).show();
-                        //拍照
-                        captureStillImage();
-                    }
+//                    Integer afState = result.get(CaptureResult.CONTROL_AE_STATE);
+//                    if (afState == CaptureRequest.CONTROL_AF_STATE_FOCUSED_LOCKED) {
+////                        unLockFocus();
+////                        Log.d("Camera", "Focus Lock Success!");
+////                        Toast.makeText(getApplicationContext(), "對焦成功", Toast.LENGTH_SHORT).show();
+//                        //拍照
+//                    }
+                    captureStillImage();
                     break;
             }
         }
@@ -363,12 +402,14 @@ public class CameraActivity extends BaseActivity {
     //相片檔案
     private String mImageFileLocation = "";
     private static File mImageFile;
+
     private ImageReader mImagereader;
+
     private final ImageReader.OnImageAvailableListener mOnImageAvailableListener =
             new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
-                    mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage()));
+//                    mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage()));
                 }
             };
 
@@ -417,6 +458,7 @@ public class CameraActivity extends BaseActivity {
 
         if (mPreview.isAvailable()) {
             setupCamera(mPreview.getWidth(), mPreview.getHeight());
+            transformImage(mPreview.getWidth(), mPreview.getHeight());
             openCamera();
         } else {
             mPreview.setSurfaceTextureListener(listener);
@@ -441,6 +483,7 @@ public class CameraActivity extends BaseActivity {
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
             setupCamera(width, height);
+            transformImage(width, height);
             openCamera();
 
         }
@@ -607,6 +650,15 @@ public class CameraActivity extends BaseActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
+            case REQUEST_CODE_READ_EXTERNAL_STORAGE:
+
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //call cursor loader
+                    Toast.makeText(this, "Now have access to view thumbs", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+
             case REQUEST_CODE_CAMER: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
@@ -699,6 +751,8 @@ public class CameraActivity extends BaseActivity {
     //拍照
     @OnClick(R.id.btn_take_photo)
     public void takePhoto(View view) {
+
+
         try {
             mImageFile = createImageFile();
         } catch (IOException e) {
@@ -711,17 +765,17 @@ public class CameraActivity extends BaseActivity {
     //建立存擋路徑
     private void createImageGallery() {
         // 路徑:/storage/emulated/0/Pictures
-        // File storageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//        File storageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         // 路徑:/storage/emulated/0
         // File storageDirectory = Environment.getExternalStorageDirectory();
         // 路徑:/data/user/0/com.development.borissu.demoapp.debug/files
         File storageDirectory = this.getFilesDir();
 
         Log.d("Camera", "External Storage Public Directory: " + storageDirectory.getPath());
-//        mGalleryFolder = new File(storageDirectory, GALLERY_LOCATION);
-//        if (!mGalleryFolder.exists()) {
-//            mGalleryFolder.mkdirs();
-//        }
+        mGalleryFolder = new File(storageDirectory, GALLERY_LOCATION);
+        if (!mGalleryFolder.exists()) {
+            mGalleryFolder.mkdirs();
+        }
 
     }
 
@@ -732,12 +786,23 @@ public class CameraActivity extends BaseActivity {
 
         File image = File.createTempFile(imageFileName, ".jpg", mGalleryFolder);
         mImageFileLocation = image.getAbsolutePath();
+        Log.d("Camera", "mImageFileLocation Directory: " + mImageFileLocation);
 
         return image;
 
     }
 
-    void setReducedImageSize() {
+//    private File createImageFile() throws IOException {
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = "IMAGE_" + timeStamp + "_";
+//        File storageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//        File image = File.createTempFile(imageFileName, ".jpg", storageDirectory);
+//        mImageFileLocation = image.getAbsolutePath();
+//
+//        return image;
+//    }
+
+    private Bitmap setReducedImageSize() {
         int targetImageViewWidth = mPhotoCapturedImageView.getWidth();
         int targetImageViewHeight = mPhotoCapturedImageView.getHeight();
 
@@ -751,10 +816,35 @@ public class CameraActivity extends BaseActivity {
         bmOptions.inSampleSize = scaleFactor;
         bmOptions.inJustDecodeBounds = false;
 
-        Bitmap photoReducedSizeBitmp = BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
-        mPhotoCapturedImageView.setImageBitmap(photoReducedSizeBitmp);
+//        Bitmap photoReducedSizeBitmp = BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
+//        mPhotoCapturedImageView.setImageBitmap(photoReducedSizeBitmp);
+        return BitmapFactory.decodeFile(mImageFileLocation, bmOptions);
 
+    }
 
+    private void rotateImage(Bitmap bitmap) {
+        ExifInterface exifInterface = null;
+        try {
+            exifInterface = new ExifInterface(mImageFileLocation);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED);
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                matrix.setRotate(90);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                matrix.setRotate(180);
+                break;
+            default:
+
+        }
+        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        mPhotoCapturedImageView.setImageBitmap(rotatedBitmap);
     }
 
     //鎖定焦距
@@ -783,8 +873,19 @@ public class CameraActivity extends BaseActivity {
         }
     }
 
+
+    //更換adapter
+    private void swapImageAdapter() {
+        RecyclerView.Adapter newImageAdapter = new ImageAdapter(mGalleryFolder);
+        //swapAdapter: 更換adapter但不需要清除RecycledViewPool，適用於使用相同ViewHolder的狀況
+        mRecyclerView.swapAdapter(newImageAdapter, false);
+    }
+
     //捕捉靜止圖像
     private void captureStillImage() {
+        //使用UI thread
+        Handler uiHandler = new Handler(getMainLooper());
+
         try {
 
             CaptureRequest.Builder captureStillBuilder
@@ -795,7 +896,7 @@ public class CameraActivity extends BaseActivity {
             //WindowManager: 與畫面溝通的interface
             //Display: 畫面資訊
             //getRotation: 取得現在畫面選轉的角度
-            int rotation = getWindowManager().getDefaultDisplay().getRotation();
+            final int rotation = getWindowManager().getDefaultDisplay().getRotation();
 
             captureStillBuilder.set(CaptureRequest.JPEG_ORIENTATION,
                     ORIENTATIONS.get(rotation));
@@ -803,24 +904,90 @@ public class CameraActivity extends BaseActivity {
             CameraCaptureSession.CaptureCallback captureCallback =
                     new CameraCaptureSession.CaptureCallback() {
                         @Override
+                        public void onCaptureStarted(@NonNull CameraCaptureSession session,
+                                                     @NonNull CaptureRequest request,
+                                                     long timestamp,
+                                                     long frameNumber) {
+                            super.onCaptureStarted(session, request, timestamp, frameNumber);
+
+//                            try {
+//
+//                                if (mRequestingAppUri != null) {
+//                                    mImageFile = new File(mRequestingAppUri.getPath());
+//                                } else {
+//                                    mImageFile = createImageFile();
+//
+//                                }
+//
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+                        }
+
+                        @Override
                         public void onCaptureCompleted(@NonNull CameraCaptureSession session,
                                                        @NonNull CaptureRequest request,
                                                        @NonNull TotalCaptureResult result) {
                             super.onCaptureCompleted(session, request, result);
 
+//                            swapImageAdapter();//更換Adapter
                             Toast.makeText(getApplicationContext(),
                                     "Image Captured!", Toast.LENGTH_SHORT).show();
 
                             unLockFocus();
-
+//                            rotateImage(setReducedImageSize());
                         }
                     };
             mCameraCaptureSession.capture(
-                    captureStillBuilder.build(), captureCallback, null
-            );
+                    captureStillBuilder.build(), captureCallback, uiHandler);
 
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
+
+    private void transformImage(int width, int height) {
+        if (mPreviewSize == null || mPreview == null) {
+            return;
+        }
+        Matrix matrix = new Matrix();
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();
+        RectF textureRectF = new RectF(0, 0, width, height);
+        RectF previewRectF = new RectF(0, 0, mPreviewSize.getHeight(), mPreviewSize.getWidth());
+        float centerX = textureRectF.centerX();
+        float centerY = textureRectF.centerY();
+        if (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) {
+            previewRectF.offset(centerX - previewRectF.centerX(),
+                    centerY - previewRectF.centerY());
+            matrix.setRectToRect(textureRectF, previewRectF, Matrix.ScaleToFit.FILL);
+            float scale = Math.max((float) width / mPreviewSize.getWidth(),
+                    (float) height / mPreviewSize.getHeight());
+            matrix.postScale(scale, scale, centerX, centerY);
+            matrix.postRotate(90 * (rotation - 2), centerX, centerY);
+        }
+        mPreview.setTransform(matrix);
+    }
+
+    private static class CompareSizeByArea implements Comparator<Size> {
+        @Override
+        public int compare(Size o1, Size o2) {
+            return Long.signum((long) o1.getWidth() * o1.getHeight() -
+                    (long) o2.getWidth() * o2.getHeight());
+        }
+    }
+
+    private static Boolean contains(int[] modes, int mode) {
+        if (modes == null) {
+            return false;
+        }
+
+        for (int i : modes) {
+            if (i == mode) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

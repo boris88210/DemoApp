@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.development.borissu.demoapp.R;
+import com.development.borissu.demoapp.activities.Asset.AssetActivity;
+import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 
@@ -136,6 +138,15 @@ public class BaseNavigationActivity extends BaseActivity implements
                 break;
             case R.id.nav__listview:
 
+                break;
+
+            case R.id.nav_behavior:
+                it.setClass(this, BehaviorActivity.class);
+                startActivity(it);
+                break;
+            case R.id.nav_asset:
+                it.setClass(this, AssetActivity.class);
+                startActivity(it);
                 break;
 
             case R.id.nav_setting:

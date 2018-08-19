@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.development.borissu.demoapp">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".DemoApp"
@@ -38,13 +37,23 @@
         </activity>
         <activity
             android:name=".activities.camera.CameraActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden"
             android:label="@string/title_activity_camera"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activities.spinner.SpinnerActivity"
             android:label="@string/title_activity_spinner"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.camera.FullscreenImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen_image"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities.behavior.BehaviorActivity"
+            android:label="@string/title_activity_behavior"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.Asset.AssetActivity"></activity>
     </application>
 
 </manifest>

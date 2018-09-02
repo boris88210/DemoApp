@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
@@ -63,6 +64,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 //Camera Device Callback
 //Camera Session Callback
 
@@ -281,6 +285,18 @@ public class CameraActivity extends BaseActivity {
         } else {
 
         }
+    }
+
+    //處理轉向的變化
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (getResources().getConfiguration().orientation == ORIENTATION_PORTRAIT) {
+
+        } else if (getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE) {
+
+        }
+
     }
 
 

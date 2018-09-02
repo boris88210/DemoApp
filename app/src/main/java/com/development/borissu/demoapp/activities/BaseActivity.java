@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import butterknife.ButterKnife;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void setContentView(int layoutResID) {

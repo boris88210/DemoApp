@@ -9,6 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_web_view">WebViewActivity</string>
     <string name="title_activity_spinner">Spinner</string>
+    <string name="title_activity_album">相簿</string>
 
     <!--NavigationView Menu-->
     <string name="nav_Camera">相機</string>

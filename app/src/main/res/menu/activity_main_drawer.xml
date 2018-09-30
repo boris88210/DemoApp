@@ -11,7 +11,7 @@
             android:id="@+id/nav_album"
             android:title="@string/nav_Album" />
         <item
-            android:id="@+id/nav__listview"
+            android:id="@+id/nav_listview"
             android:title="@string/nav_ListView" />
 
         <item
@@ -21,6 +21,13 @@
         <item
             android:id="@+id/nav_asset"
             android:title="@string/nav_Asset" />
+
+        <item
+            android:id="@+id/nav_onTouchEvent"
+            android:title="@string/nav_move_pic" />
+        <item
+            android:id="@+id/nav_thread"
+            android:title="@string/nav_thread"/>
         <item
             android:id="@+id/nav_spinner"
             android:title="@string/nav_Spinner" />

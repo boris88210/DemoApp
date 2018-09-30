@@ -54,8 +54,11 @@
             android:label="@string/title_activity_behavior"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.Asset.AssetActivity" />
-        <activity android:name=".activities.album.AlbumActivity"
-            android:label="@string/title_activity_album"/>
+        <activity
+            android:name=".activities.album.AlbumActivity"
+            android:label="@string/title_activity_album" />
+        <activity android:name=".activities.movePic.MovePicActivity" />
+        <activity android:name=".activities.ThreadActivity"/>
     </application>
 
 </manifest>

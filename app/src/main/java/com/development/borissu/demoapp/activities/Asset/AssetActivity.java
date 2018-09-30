@@ -48,7 +48,7 @@ public class AssetActivity extends BaseActivity {
 //        DataObject dataObject = getNewDataObject();
 
 //        saveFile(getNewDataObjectList());
-        saveFile(getNewDataObjectArray());
+//        saveFile(getNewDataObjectArray());
 
 //        try {
 //            InputStreamReader reader = new InputStreamReader(openFileInput("test.json"));

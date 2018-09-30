@@ -19,6 +19,7 @@ import com.development.borissu.demoapp.activities.Asset.AssetActivity;
 import com.development.borissu.demoapp.activities.album.AlbumActivity;
 import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;
+import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 
 public class BaseNavigationActivity extends BaseActivity implements
@@ -138,7 +139,7 @@ public class BaseNavigationActivity extends BaseActivity implements
                 it.setClass(this, SpinnerActivity.class);
                 startActivity(it);
                 break;
-            case R.id.nav__listview:
+            case R.id.nav_listview:
 
                 break;
 
@@ -148,6 +149,14 @@ public class BaseNavigationActivity extends BaseActivity implements
                 break;
             case R.id.nav_asset:
                 it.setClass(this, AssetActivity.class);
+                startActivity(it);
+                break;
+            case R.id.nav_onTouchEvent:
+                it.setClass(this, MovePicActivity.class);
+                startActivity(it);
+                break;
+            case R.id.nav_thread:
+                it.setClass(this, ThreadActivity.class);
                 startActivity(it);
                 break;
 

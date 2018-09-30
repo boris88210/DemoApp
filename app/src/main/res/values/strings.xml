@@ -21,6 +21,8 @@
     <string name="nav_WebView">WebView</string>
     <string name="nav_Setting">Setting</string>
     <string name="nav_popupMenu">Popup Menu</string>
+    <string name="nav_move_pic">圖案移動</string>
+    <string name="nav_thread">執行緒</string>
 
     <!--MainActivity-->
 

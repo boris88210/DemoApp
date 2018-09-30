@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.development.borissu.demoapp.R;
@@ -46,19 +47,20 @@ public class AssetActivity extends BaseActivity {
 //        readAssetFile("SampleJson.json");
 //        DataObject dataObject = getNewDataObject();
 
-        saveFile(getNewDataObjectList());
+//        saveFile(getNewDataObjectList());
+        saveFile(getNewDataObjectArray());
 
-        try {
-            InputStreamReader reader = new InputStreamReader(openFileInput("test.json"));
-
-            Gson g = new Gson();
-            DataObject[] d = g.fromJson(reader, DataObject[].class);
-
-            fileContent.setText(d[0].toString() + "\n" + d[1].toString());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            InputStreamReader reader = new InputStreamReader(openFileInput("test.json"));
+//
+//            Gson g = new Gson();
+//            DataObject[] d = g.fromJson(reader, DataObject[].class);
+//
+//            fileContent.setText(d[0].toString() + "\n" + d[1].toString());
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
 
     }
@@ -87,14 +89,19 @@ public class AssetActivity extends BaseActivity {
     }
 
 
-    private void saveFile(Object dataObject) {
+    private void saveFile(Object... dataObject) {
         String fileName = "test.json";
         File directory = getStoragePath();
         FileOutputStream fileOutputStream;
 
         Gson gson = new Gson();
-        String content = gson.toJson(dataObject);
-
+        String content = "";
+        if (dataObject.length == 1) {
+            content = gson.toJson(dataObject[0]);
+        } else {
+            content = gson.toJson(dataObject);
+        }
+        Log.d("JSON_String", content);
 
         if (directory.canWrite()) {
             try {
@@ -121,10 +128,20 @@ public class AssetActivity extends BaseActivity {
     private List<DataObject> getNewDataObjectList() {
 
         List<DataObject> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 0; i++) {
             list.add(getNewDataObject());
         }
         return list;
+    }
+
+    private DataObject[] getNewDataObjectArray() {
+
+        DataObject[] array = new DataObject[1];
+        for (int i = 0; i < 1; i++) {
+            array[i] = getNewDataObject();
+
+        }
+        return array;
     }
 
     class DataObject {

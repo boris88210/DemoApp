@@ -21,6 +21,7 @@ import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;
 import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
+import com.development.borissu.demoapp.activities.thread.ThreadActivity;
 
 public class BaseNavigationActivity extends BaseActivity implements
         DrawerLayout.DrawerListener

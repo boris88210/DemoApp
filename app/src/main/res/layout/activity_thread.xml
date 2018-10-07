@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.development.borissu.demoapp.activities.ThreadActivity">
+    tools:context="com.development.borissu.demoapp.activities.thread.ThreadActivity">
 
     <Button
         android:id="@+id/btn_start_thread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="發動Alert"/>
+        android:text="發動任務"/>
+    <Button
+    android:id="@+id/btn_start_thread_again"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="發動任務again"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_thread"/>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -58,7 +58,7 @@
             android:name=".activities.album.AlbumActivity"
             android:label="@string/title_activity_album" />
         <activity android:name=".activities.movePic.MovePicActivity" />
-        <activity android:name=".activities.ThreadActivity"/>
+        <activity android:name=".activities.thread.ThreadActivity"/>
     </application>
 
 </manifest>

@@ -2,6 +2,8 @@ package com.development.borissu.demoapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.Selection;
+import android.util.Log;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -9,7 +11,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import com.development.borissu.demoapp.R;
+import com.development.borissu.demoapp.dataModel.SelectionItem;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseNavigationActivity {
 
@@ -17,6 +23,10 @@ public class MainActivity extends BaseNavigationActivity {
 
     @BindView(R.id.tv_api_data)
     TextView apiData;
+    @BindView(R.id.tv_api_progress)
+    TextView tvProgress;
+    @BindView(R.id.tv_api_progress_time)
+    TextView tvProgressTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +38,16 @@ public class MainActivity extends BaseNavigationActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        List<SelectionItem> itemList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            SelectionItem item = new SelectionItem(i, "Item " + i);
+            itemList.add(item);
+        }
+
+        Log.i("TEST", "is equal? " + itemList.get(0).equals(new SelectionItem(0, "1234")));
+        Log.i("TEST", "is equal? " + itemList.contains(new SelectionItem(0, "1234")));
+
     }
 
     @OnClick(R.id.test_firebase)
@@ -60,4 +80,11 @@ public class MainActivity extends BaseNavigationActivity {
 //        }
 //
 //    }
+
+    public void updateApiProgress(int progress) {
+        tvProgress.setText("目前API進度: " + progress);
+    }
+    public void updateApiProgressTime(long progress) {
+        tvProgressTime.setText("API費時: " + progress/1000);
+    }
 }

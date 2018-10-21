@@ -1,6 +1,11 @@
 package com.development.borissu.demoapp.activities;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.text.Selection;
 import android.util.Log;
@@ -13,6 +18,7 @@ import butterknife.OnClick;
 import com.development.borissu.demoapp.R;
 import com.development.borissu.demoapp.dataModel.SelectionItem;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +58,13 @@ public class MainActivity extends BaseNavigationActivity {
 
     @OnClick(R.id.test_firebase)
     public void testFirebase() {
-        String id = "Test_ID";
-        String name = "Test_Name";
-        Bundle bundle = new Bundle();
-        bundle.putString("Btn_test_Firebase", id);
-        bundle.putString("User_name", name);
-        mFirebaseAnalytics.logEvent("Test_Firebase", bundle);
+//        String id = "Test_ID";
+//        String name = "Test_Name";
+//        Bundle bundle = new Bundle();
+//        bundle.putString("Btn_test_Firebase", id);
+//        bundle.putString("User_name", name);
+//        mFirebaseAnalytics.logEvent("Test_Firebase", bundle);
+        testInteger();
     }
 //
 //    @OnClick(R.id.btn_call_api)
@@ -84,7 +91,27 @@ public class MainActivity extends BaseNavigationActivity {
     public void updateApiProgress(int progress) {
         tvProgress.setText("目前API進度: " + progress);
     }
+
     public void updateApiProgressTime(long progress) {
-        tvProgressTime.setText("API費時: " + progress/1000);
+        tvProgressTime.setText("API費時: " + progress / 1000);
     }
+
+
+    private void testInteger() {
+        Gson gson = new Gson();
+        String jsonStr = "{\"intObject\":null,\"intType\":321}";
+        IntegerClass integerClass = gson.fromJson(jsonStr, IntegerClass.class);
+        int j = integerClass.intObject;
+        Log.i("Json", "test" + j);
+
+    }
+
+    public class IntegerClass {
+
+        public Integer intObject;
+
+        public int intType;
+
+    }
+
 }

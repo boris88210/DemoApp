@@ -13,8 +13,10 @@
 
     <!--NavigationView Menu-->
     <string name="nav_Camera">相機</string>
+    <string name="nav_Recording_Video">既有功能錄影</string>
     <string name="nav_Album">相簿</string>
     <string name="nav_ListView">列表ListView</string>
+    <string name="nav_Vibration">震動</string>
     <string name="nav_Behavior">滑動衝突</string>
     <string name="nav_Asset">Asset</string>
     <string name="nav_Spinner">Spinner</string>

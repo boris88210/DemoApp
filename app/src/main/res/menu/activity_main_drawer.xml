@@ -8,26 +8,29 @@
             android:id="@+id/nav_camera"
             android:title="@string/nav_Camera" />
         <item
+            android:id="@+id/nav_recording_video"
+            android:title="@string/nav_Recording_Video" />
+        <item
             android:id="@+id/nav_album"
             android:title="@string/nav_Album" />
         <item
             android:id="@+id/nav_listview"
             android:title="@string/nav_ListView" />
-
+        <item
+            android:id="@+id/nav_vibration"
+            android:title="@string/nav_Vibration" />
         <item
             android:id="@+id/nav_behavior"
             android:title="@string/nav_Behavior" />
-
         <item
             android:id="@+id/nav_asset"
             android:title="@string/nav_Asset" />
-
         <item
             android:id="@+id/nav_onTouchEvent"
             android:title="@string/nav_move_pic" />
         <item
             android:id="@+id/nav_thread"
-            android:title="@string/nav_thread"/>
+            android:title="@string/nav_thread" />
         <item
             android:id="@+id/nav_spinner"
             android:title="@string/nav_Spinner" />

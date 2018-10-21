@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.development.borissu.demoapp.activities.VibrationActivity">
+
+    <Button
+        android:id="@+id/btn_hasVibrator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="是否有震動器" />
+
+
+    <Button
+        android:id="@+id/btn_short"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="短震" />
+
+    <Button
+        android:id="@+id/btn_long"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="長震" />
+
+    <Button
+        android:id="@+id/btn_effect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="震動效果" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消震動" />
+</LinearLayout>

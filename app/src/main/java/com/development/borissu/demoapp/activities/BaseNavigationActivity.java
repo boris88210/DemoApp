@@ -2,17 +2,23 @@ package com.development.borissu.demoapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.development.borissu.demoapp.R;
 import com.development.borissu.demoapp.activities.Asset.AssetActivity;
@@ -52,6 +58,7 @@ public class BaseNavigationActivity extends BaseActivity implements
         Toolbar toolbar = NavActivityLayout.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
 
@@ -131,6 +138,9 @@ public class BaseNavigationActivity extends BaseActivity implements
                 it.setClass(this, CameraActivity.class);
                 startActivity(it);
                 break;
+            case R.id.nav_recording_video:
+                goToRecording();
+                break;
             case R.id.nav_album:
                 it.setClass(this, AlbumActivity.class);
                 startActivity(it);
@@ -141,6 +151,11 @@ public class BaseNavigationActivity extends BaseActivity implements
                 startActivity(it);
                 break;
             case R.id.nav_listview:
+
+                break;
+            case R.id.nav_vibration:
+                it.setClass(this, VibrationActivity.class);
+                startActivity(it);
 
                 break;
 
@@ -172,12 +187,40 @@ public class BaseNavigationActivity extends BaseActivity implements
 
         }
 
-
+        NavActivityLayout.closeDrawer(Gravity.START);
         return false;
     }
 
-    //    public void setToolBar() {
-//        setSupportActionBar(mToolBar);
-//
-//    }
+    protected static int REQUEST_CODE_RECORDING_VEDIO = 122;
+
+    protected void goToRecording() {
+        //設定錄影Action,Category為default
+        Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        //指定檔案位置存擋
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //TODO:使用FileProvider
+
+        } else {
+
+        }
+
+
+        //確認有app可以處理這個intent才發動
+        if (videoIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(videoIntent, REQUEST_CODE_RECORDING_VEDIO);
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_RECORDING_VEDIO && resultCode == RESULT_OK) {
+            Uri vedio = data.getData();
+            Toast.makeText(this, "Uri: " + vedio.getPath(), Toast.LENGTH_SHORT).show();
+            Log.d("TEST", "Uri: " + vedio.getPath());
+        }
+
+    }
 }

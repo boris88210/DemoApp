@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -25,6 +26,7 @@ import com.development.borissu.demoapp.activities.Asset.AssetActivity;
 import com.development.borissu.demoapp.activities.album.AlbumActivity;
 import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;
+import com.development.borissu.demoapp.activities.contacts.ContactActivity;
 import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 import com.development.borissu.demoapp.activities.thread.ThreadActivity;
@@ -153,6 +155,11 @@ public class BaseNavigationActivity extends BaseActivity implements
             case R.id.nav_listview:
 
                 break;
+            case R.id.nav_contacts:
+                it.setClass(this, ContactActivity.class);
+                startActivity(it);
+                break;
+
             case R.id.nav_vibration:
                 it.setClass(this, VibrationActivity.class);
                 startActivity(it);

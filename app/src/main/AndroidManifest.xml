@@ -68,7 +68,8 @@
         <activity android:name=".activities.movePic.MovePicActivity" />
         <activity android:name=".activities.thread.ThreadActivity" />
         <activity android:name=".activities.VibrationActivity" />
-        <activity android:name=".activities.contacts.ContactActivity"></activity>
+        <activity android:name=".activities.contacts.ContactActivity" />
+        <activity android:name=".activities.database.DatabaseActivity"></activity>
     </application>
 
 </manifest>

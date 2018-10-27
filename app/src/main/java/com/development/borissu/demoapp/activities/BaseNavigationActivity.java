@@ -27,6 +27,7 @@ import com.development.borissu.demoapp.activities.album.AlbumActivity;
 import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;
 import com.development.borissu.demoapp.activities.contacts.ContactActivity;
+import com.development.borissu.demoapp.activities.database.DatabaseActivity;
 import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 import com.development.borissu.demoapp.activities.thread.ThreadActivity;
@@ -148,6 +149,12 @@ public class BaseNavigationActivity extends BaseActivity implements
                 startActivity(it);
 
                 break;
+
+            case R.id.nav_database_room:
+                it.setClass(this, DatabaseActivity.class);
+                startActivity(it);
+                break;
+
             case R.id.nav_spinner:
                 it.setClass(this, SpinnerActivity.class);
                 startActivity(it);

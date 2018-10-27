@@ -14,11 +14,14 @@
             android:id="@+id/nav_album"
             android:title="@string/nav_Album" />
         <item
+            android:id="@+id/nav_database_room"
+            android:title="@string/nav_Database_room" />
+        <item
             android:id="@+id/nav_listview"
             android:title="@string/nav_ListView" />
         <item
             android:id="@+id/nav_contacts"
-            android:title="聯絡人"/>
+            android:title="@string/nav_Contacts"/>
         <item
             android:id="@+id/nav_vibration"
             android:title="@string/nav_Vibration" />

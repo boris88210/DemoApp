@@ -3,28 +3,45 @@ package com.development.borissu.demoapp.database.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "User")
+import com.development.borissu.demoapp.database.converter.Converter;
+
+import java.util.Date;
+
+@Entity(tableName = "user")
 public class User {
     @NonNull
     @PrimaryKey
-    @ColumnInfo(name = "User_Id")
+    @ColumnInfo(name = "user_id")
     private String uid;
 
-    @ColumnInfo(name = "First_Name")
+    @ColumnInfo(name = "first_name")
     private String firstName;
 
-    @ColumnInfo(name = "Last_Name")
+    @ColumnInfo(name = "last_name")
     private String lastName;
+
+    @ColumnInfo(name = "create_date")
+    @TypeConverters(Converter.class)
+    private Date createDate;
 
 
     //---Constructor---
-    public User(){
+
+    public User() {
 
     }
 
+    public User(String id) {
+        this();
+        this.uid = id;
+    }
+
     public User(String id, String firstName, String lastName) {
+        this();
         this.uid = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,11 +55,15 @@ public class User {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstName == null ? "" : firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastName == null ? "" : lastName;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
     }
 
     //---Setter---
@@ -57,5 +78,9 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

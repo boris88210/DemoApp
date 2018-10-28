@@ -1,7 +1,6 @@
 package com.development.borissu.demoapp.activities.contacts;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;

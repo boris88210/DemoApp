@@ -7,15 +7,64 @@
     android:orientation="vertical"
     tools:context="com.development.borissu.demoapp.activities.database.DatabaseActivity">
 
-    <Button
-        android:id="@+id/btn_query"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="query"/>
+        android:hint="ID" />
+
+    <EditText
+        android:id="@+id/et_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="First Name" />
+
+    <EditText
+        android:id="@+id/et_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last Name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="insert" />
+
+        <Button
+            android:id="@+id/btn_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="query" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="update" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_query_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="搜尋結果" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_result_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

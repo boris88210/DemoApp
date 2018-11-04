@@ -18,6 +18,7 @@
     <string name="nav_Database_room">資料庫Room</string>
     <string name="nav_ListView">列表ListView</string>
     <string name="nav_Contacts">聯絡人</string>
+    <string name="nav_Contacts＿insert">聯絡人新增</string>
     <string name="nav_Vibration">震動</string>
     <string name="nav_Behavior">滑動衝突</string>
     <string name="nav_Asset">Asset</string>

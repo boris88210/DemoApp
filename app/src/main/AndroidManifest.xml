@@ -69,7 +69,8 @@
         <activity android:name=".activities.thread.ThreadActivity" />
         <activity android:name=".activities.VibrationActivity" />
         <activity android:name=".activities.contacts.ContactActivity" />
-        <activity android:name=".activities.database.DatabaseActivity"></activity>
+        <activity android:name=".activities.database.DatabaseActivity" />
+        <activity android:name=".activities.contacts.ContactInsertActivity"></activity>
     </application>
 
 </manifest>

@@ -23,6 +23,9 @@
             android:id="@+id/nav_contacts"
             android:title="@string/nav_Contacts"/>
         <item
+            android:id="@+id/nav_contacts_insert"
+            android:title="@string/nav_Contacts＿insert"/>
+        <item
             android:id="@+id/nav_vibration"
             android:title="@string/nav_Vibration" />
         <item

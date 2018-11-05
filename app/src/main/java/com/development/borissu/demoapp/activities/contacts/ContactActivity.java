@@ -85,7 +85,7 @@ public class ContactActivity extends BaseActivity implements
     // Defines a variable for the search string
     private String mSearchString;
     // Defines the array to hold values that replace the ?
-    private String[] mSelectionArgs = {mSearchString};
+    private String[] mSelectionArgs = { mSearchString };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +157,7 @@ public class ContactActivity extends BaseActivity implements
                 SELECTION,
                 mSelectionArgs,
                 null
-        );
+                );
     }
 
     @Override

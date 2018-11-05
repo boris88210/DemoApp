@@ -71,6 +71,7 @@
         <activity android:name=".activities.contacts.ContactActivity" />
         <activity android:name=".activities.database.DatabaseActivity" />
         <activity android:name=".activities.contacts.ContactInsertActivity"></activity>
+        <activity android:name=".activities.firebase.FirebaseActivity"></activity>
     </application>
 
 </manifest>

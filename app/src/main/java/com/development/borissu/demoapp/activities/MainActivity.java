@@ -1,6 +1,8 @@
 package com.development.borissu.demoapp.activities;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -33,6 +35,8 @@ public class MainActivity extends BaseNavigationActivity {
     TextView tvProgress;
     @BindView(R.id.tv_api_progress_time)
     TextView tvProgressTime;
+    @BindView(R.id.tv_version_code)
+    TextView tvVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,14 @@ public class MainActivity extends BaseNavigationActivity {
 
         Log.i("TEST", "is equal? " + itemList.get(0).equals(new SelectionItem(0, "1234")));
         Log.i("TEST", "is equal? " + itemList.contains(new SelectionItem(0, "1234")));
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
+            tvVersion.setText(info.versionName);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 

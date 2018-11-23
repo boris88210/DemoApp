@@ -70,8 +70,9 @@
         <activity android:name=".activities.VibrationActivity" />
         <activity android:name=".activities.contacts.ContactActivity" />
         <activity android:name=".activities.database.DatabaseActivity" />
-        <activity android:name=".activities.contacts.ContactInsertActivity"></activity>
-        <activity android:name=".activities.firebase.FirebaseActivity"></activity>
+        <activity android:name=".activities.contacts.ContactInsertActivity" />
+        <activity android:name=".activities.firebase.FirebaseActivity" />
+        <activity android:name=".activities.table.TableActivity"></activity>
     </application>
 
 </manifest>

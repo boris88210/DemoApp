@@ -22,8 +22,8 @@
             android:title="@string/nav_Firebase" />
 
         <item
-            android:id="@+id/nav_listview"
-            android:title="@string/nav_ListView" />
+            android:id="@+id/nav_table"
+            android:title="@string/nav_Table" />
         <item
             android:id="@+id/nav_contacts"
             android:title="@string/nav_Contacts"/>

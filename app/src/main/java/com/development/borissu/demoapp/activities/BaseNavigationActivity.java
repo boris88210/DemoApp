@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -31,6 +30,7 @@ import com.development.borissu.demoapp.activities.database.DatabaseActivity;
 import com.development.borissu.demoapp.activities.firebase.FirebaseActivity;
 import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
+import com.development.borissu.demoapp.activities.table.TableActivity;
 import com.development.borissu.demoapp.activities.thread.ThreadActivity;
 
 public class BaseNavigationActivity extends BaseActivity implements
@@ -166,7 +166,9 @@ public class BaseNavigationActivity extends BaseActivity implements
                 startActivity(it);
                 break;
 
-            case R.id.nav_listview:
+            case R.id.nav_table:
+                it.setClass(this, TableActivity.class);
+                startActivity(it);
 
                 break;
             case R.id.nav_contacts:

@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('chai-app-commonlib-1.0-release-170804.aar'))

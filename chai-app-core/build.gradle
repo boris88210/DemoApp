@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('chai-app-core-1.1.0-release-181126.aar'))

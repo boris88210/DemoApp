@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        //applicationId "com.chailease.tw.app.android.apiclient"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 3
+        versionName "1.2.1"
+        project.archivesBaseName = "chai-app-apiclient-base"
+        project.version = android.defaultConfig.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        dev {
+        }
+    }
+//    libraryVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def SEP = "-"
+//            def formattedDate = new Date().format('yyMMdd')
+//            def newName = output.outputFile.name
+//            def buildType = variant.variantData.variantConfiguration.buildType.name
+//            def project = defaultConfig.project.archivesBaseName
+//            newName = newName.replace(project, project+SEP+defaultConfig.project.version)
+//            newName = newName.replace(SEP+buildType, SEP+buildType + SEP + formattedDate)
+//            output.outputFile = new File(output.outputFile.parent, newName)
+//        }
+//    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(':chai-app-commonlib')
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.volley:volley:1.0.0'
+    testCompile 'junit:junit:4.12'
+}

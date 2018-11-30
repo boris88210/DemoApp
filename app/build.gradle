@@ -21,10 +21,42 @@ android {
             debuggable true
             versionNameSuffix "-debug"
         }
-        dev {
-            debuggable true
-        }
+//        dev {
+//            debuggable true
+//        }
     }
+
+//    flavorDimensions "package"
+//    productFlavors {
+//
+//        core {
+//            dimension "package"
+//        }
+//
+//        camera {
+//            dimension "package"
+////            sourceSets {
+////                camera.java.srcDirs += 'src/camera/base'
+////                camera.java.srcDirs += 'src/camera/api9'
+////                camera.java.srcDirs += 'src/camera/api14'
+////                camera.java.srcDirs += 'src/camera/api21'
+////                camera.java.srcDirs += 'src/camera/api23'
+////            }
+//        }
+//
+//        full {
+//            dimension "package"
+////            sourceSets {
+////                camera.java.srcDirs += 'src/camera/base'
+////                camera.java.srcDirs += 'src/camera/api9'
+////                camera.java.srcDirs += 'src/camera/api14'
+////                camera.java.srcDirs += 'src/camera/api21'
+////                camera.java.srcDirs += 'src/camera/api23'
+////            }
+//        }
+//
+//
+//    }
 }
 
 dependencies {

@@ -72,7 +72,16 @@
         <activity android:name=".activities.database.DatabaseActivity" />
         <activity android:name=".activities.contacts.ContactInsertActivity" />
         <activity android:name=".activities.firebase.FirebaseActivity" />
-        <activity android:name=".activities.table.TableActivity"></activity>
+        <activity android:name=".activities.table.TableActivity" />
+        <activity
+            android:name=".activities.transparentActionBar.TranspatentActionBarActivity"
+            android:label="@string/title_activity_transpatent_action_bar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.transparentActionBar.EmptyTPActionBarActivity"
+            android:label="EmptyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        />
     </application>
 
 </manifest>

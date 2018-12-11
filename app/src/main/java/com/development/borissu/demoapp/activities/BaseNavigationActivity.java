@@ -1,12 +1,15 @@
 package com.development.borissu.demoapp.activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -32,6 +35,7 @@ import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 import com.development.borissu.demoapp.activities.table.TableActivity;
 import com.development.borissu.demoapp.activities.thread.ThreadActivity;
+import com.development.borissu.demoapp.activities.transparentActionBar.TranspatentActionBarActivity;
 
 public class BaseNavigationActivity extends BaseActivity implements
         DrawerLayout.DrawerListener
@@ -143,7 +147,11 @@ public class BaseNavigationActivity extends BaseActivity implements
                 startActivity(it);
                 break;
             case R.id.nav_recording_video:
-                goToRecording();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    checkReadExteranlStoragePermission();
+                } else {
+                    goToRecording();
+                }
                 break;
             case R.id.nav_album:
                 it.setClass(this, AlbumActivity.class);
@@ -160,7 +168,10 @@ public class BaseNavigationActivity extends BaseActivity implements
                 it.setClass(this, SpinnerActivity.class);
                 startActivity(it);
                 break;
-
+            case R.id.nav_transparentActionBar:
+                it.setClass(this, TranspatentActionBarActivity.class);
+                startActivity(it);
+                break;
             case R.id.nav_firebase:
                 it.setClass(this, FirebaseActivity.class);
                 startActivity(it);
@@ -220,19 +231,71 @@ public class BaseNavigationActivity extends BaseActivity implements
         //設定錄影Action,Category為default
         Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         //指定檔案位置存擋
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            //TODO:使用FileProvider
-
-        } else {
-
-        }
-
-
         //確認有app可以處理這個intent才發動
         if (videoIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(videoIntent, REQUEST_CODE_RECORDING_VEDIO);
         }
 
+    }
+
+    private static final int REQUEST_CODE_PERMISSION_CAMERA = 0;
+
+    /**
+     * 確認使用者權限
+     */
+    private void checkReadExteranlStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//Android API > 23(6.0)
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+                goToRecording();
+
+            } else {
+                if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+                    Toast.makeText(this, "App needs to use your camera.", Toast.LENGTH_SHORT).show();
+                }
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CODE_PERMISSION_CAMERA);
+            }
+        } else {
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_PERMISSION_CAMERA:
+
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //call cursor loader
+                    Toast.makeText(this, "Now App can access to your camera.", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
+//
+//            case REQUEST_CODE_CAMER: {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                    // permission was granted, yay! Do the
+//                    // contacts-related task you need to do.
+//                    openCamera();
+//
+//                } else {
+//
+//                    finish();
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//                }
+//                return;
+//            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
     @Override

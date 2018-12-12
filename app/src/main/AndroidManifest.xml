@@ -81,7 +81,11 @@
             android:name=".activities.transparentActionBar.EmptyTPActionBarActivity"
             android:label="EmptyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        />
+
+        <activity
+            android:name=".activities.transparentActionBar.CustToolBarActivity"
+            android:label="CustToolBar"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

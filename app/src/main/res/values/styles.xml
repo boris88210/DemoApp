@@ -31,4 +31,11 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+
+    <style name="CustomizeStyle" parent="AppTheme">
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

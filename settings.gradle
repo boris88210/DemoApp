@@ -1,1 +1,1 @@
-include ':app', ':commonlib', ':chai-app-commonlib', ':core', ':apibase', ':apiclientdev', ':chai-app-core', ':apiclientprod'
+include ':app'

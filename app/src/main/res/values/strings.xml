@@ -12,11 +12,13 @@
     <string name="title_activity_album">相簿</string>
 
     <!--NavigationView Menu-->
+    <string name="nav_transActivity">換頁動畫</string>
     <string name="nav_Camera">相機</string>
     <string name="nav_Recording_Video">既有功能錄影</string>
     <string name="nav_Album">相簿</string>
     <string name="nav_Database_room">資料庫Room</string>
     <string name="nav_TransparentActionBar">透明ActionBar</string>
+    <string name="nav_CustColor">客制顏色</string>
     <string name="nav_Firebase">Firebase</string>
     <string name="nav_Table">Table</string>
     <string name="nav_Contacts">聯絡人</string>

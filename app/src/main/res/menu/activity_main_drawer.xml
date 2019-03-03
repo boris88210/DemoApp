@@ -5,6 +5,9 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_transActivity"
+            android:title="@string/nav_transActivity" />
+        <item
             android:id="@+id/nav_camera"
             android:title="@string/nav_Camera" />
         <item
@@ -16,6 +19,9 @@
         <item
             android:id="@+id/nav_database_room"
             android:title="@string/nav_Database_room" />
+        <item
+            android:id="@+id/nav_cust_color"
+            android:title="@string/nav_CustColor" />
         <item
             android:id="@+id/nav_transparentActionBar"
             android:title="@string/nav_TransparentActionBar" />
@@ -29,7 +35,7 @@
             android:title="@string/nav_Table" />
         <item
             android:id="@+id/nav_contacts"
-            android:title="@string/nav_Contacts"/>
+            android:title="@string/nav_Contacts" />
         <item
             android:id="@+id/nav_vibration"
             android:title="@string/nav_Vibration" />

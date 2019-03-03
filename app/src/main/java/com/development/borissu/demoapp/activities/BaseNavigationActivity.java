@@ -29,12 +29,14 @@ import com.development.borissu.demoapp.activities.album.AlbumActivity;
 import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;
 import com.development.borissu.demoapp.activities.contacts.ContactActivity;
+import com.development.borissu.demoapp.activities.custcolor.CustColorActivity;
 import com.development.borissu.demoapp.activities.database.DatabaseActivity;
 import com.development.borissu.demoapp.activities.firebase.FirebaseActivity;
 import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
 import com.development.borissu.demoapp.activities.table.TableActivity;
 import com.development.borissu.demoapp.activities.thread.ThreadActivity;
+import com.development.borissu.demoapp.activities.transActivity.Trans1Activity;
 import com.development.borissu.demoapp.activities.transparentActionBar.TranspatentActionBarActivity;
 
 public class BaseNavigationActivity extends BaseActivity implements
@@ -142,6 +144,11 @@ public class BaseNavigationActivity extends BaseActivity implements
         Intent it = new Intent();
         it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//
         switch (item.getItemId()) {
+            case R.id.nav_transActivity:
+                it.setClass(this, Trans1Activity.class);
+                startActivity(it);
+                break;
+
             case R.id.nav_camera:
                 it.setClass(this, CameraActivity.class);
                 startActivity(it);
@@ -168,6 +175,12 @@ public class BaseNavigationActivity extends BaseActivity implements
                 it.setClass(this, SpinnerActivity.class);
                 startActivity(it);
                 break;
+
+            case R.id.nav_cust_color:
+                it.setClass(this, CustColorActivity.class);
+                startActivity(it);
+                break;
+
             case R.id.nav_transparentActionBar:
                 it.setClass(this, TranspatentActionBarActivity.class);
                 startActivity(it);

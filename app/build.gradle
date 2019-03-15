@@ -2,13 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.development.borissu.demoapp"
         minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 28
+        //版本在flavor中設定
+//        versionCode 1
+//        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,6 +21,33 @@ android {
             applicationIdSuffix ".debug"
             debuggable true
             versionNameSuffix "-debug"
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        inner {
+            versionCode 1
+            versionName "1.0.0"
+        }
+
+        prod {
+            versionCode 1
+            versionName "1.0.0"
+        }
+    }
+
+//    可對Build Veryiant做filter
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+//        if (variant.buildType.name == "debug") {
+//            setIgnore(true)
+//        }
+        if (variant.buildType.name != "release" && names.contains("prod")) {
+            setIgnore(true)
+        }
+        if (variant.buildType.name == "release" && names.contains("inner")) {
+            setIgnore(true)
         }
     }
 

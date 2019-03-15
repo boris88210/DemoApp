@@ -4,19 +4,21 @@
     package="com.development.borissu.demoapp">
 
     <!-- 權限 -->
-    <!--Normal Permissions-->
+    <!-- Normal Permissions -->
 
-    <!--Signature Permissions-->
 
-    <!--Dangerous Permissions-->
+    <!-- Signature Permissions -->
+
+
+    <!-- Dangerous Permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!--<uses-permission android:name="android.permission.READ_CONTACTS" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_CONTACTS" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!-- <uses-permission android:name="android.permission.READ_CONTACTS" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_CONTACTS" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
 
 
     <!-- APP 特色 -->
@@ -100,7 +102,8 @@
             android:name=".activities.custcolor.CustColorActivity"
             android:theme="@style/CustomizeStyle" />
         <activity android:name=".activities.transActivity.Trans1Activity" />
-        <activity android:name=".activities.transActivity.Trans2Activity"></activity>
+        <activity android:name=".activities.transActivity.Trans2Activity" />
+        <activity android:name=".activities.swipeItem.SwipItemActivity"></activity>
     </application>
 
 </manifest>

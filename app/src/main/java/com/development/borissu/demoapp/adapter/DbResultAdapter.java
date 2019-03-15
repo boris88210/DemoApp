@@ -39,6 +39,8 @@ public class DbResultAdapter extends BaseRecyclerViewAdapter {
     }
 
 
+
+
     class ResultViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_id)

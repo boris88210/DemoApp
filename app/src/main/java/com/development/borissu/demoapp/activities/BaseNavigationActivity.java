@@ -34,6 +34,7 @@ import com.development.borissu.demoapp.activities.database.DatabaseActivity;
 import com.development.borissu.demoapp.activities.firebase.FirebaseActivity;
 import com.development.borissu.demoapp.activities.movePic.MovePicActivity;
 import com.development.borissu.demoapp.activities.spinner.SpinnerActivity;
+import com.development.borissu.demoapp.activities.swipeItem.SwipItemActivity;
 import com.development.borissu.demoapp.activities.table.TableActivity;
 import com.development.borissu.demoapp.activities.thread.ThreadActivity;
 import com.development.borissu.demoapp.activities.transActivity.Trans1Activity;
@@ -144,6 +145,11 @@ public class BaseNavigationActivity extends BaseActivity implements
         Intent it = new Intent();
         it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//
         switch (item.getItemId()) {
+            case R.id.nav_swipe_item:
+                it.setClass(this, SwipItemActivity.class);
+                startActivity(it);
+                break;
+
             case R.id.nav_transActivity:
                 it.setClass(this, Trans1Activity.class);
                 startActivity(it);

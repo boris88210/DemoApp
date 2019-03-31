@@ -12,6 +12,7 @@
     <string name="title_activity_album">相簿</string>
 
     <!--NavigationView Menu-->
+    <string name="nav_swipeItem">可滑動列表</string>
     <string name="nav_transActivity">換頁動畫</string>
     <string name="nav_Camera">相機</string>
     <string name="nav_Recording_Video">既有功能錄影</string>

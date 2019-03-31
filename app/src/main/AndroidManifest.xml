@@ -72,7 +72,7 @@
             android:name=".activities.behavior.BehaviorActivity"
             android:label="@string/title_activity_behavior"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.Asset.AssetActivity" />
+        <activity android:name=".activities.asset.AssetActivity" />
         <activity
             android:name=".activities.album.AlbumActivity"
             android:label="@string/title_activity_album" />

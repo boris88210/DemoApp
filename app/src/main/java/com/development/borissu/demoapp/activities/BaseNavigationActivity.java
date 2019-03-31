@@ -24,7 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.development.borissu.demoapp.R;
-import com.development.borissu.demoapp.activities.Asset.AssetActivity;
+import com.development.borissu.demoapp.activities.asset.AssetActivity;
 import com.development.borissu.demoapp.activities.album.AlbumActivity;
 import com.development.borissu.demoapp.activities.behavior.BehaviorActivity;
 import com.development.borissu.demoapp.activities.camera.CameraActivity;

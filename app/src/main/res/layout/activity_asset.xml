@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.development.borissu.demoapp.activities.Asset.AssetActivity">
+    tools:context="com.development.borissu.demoapp.activities.asset.AssetActivity">
+
+    <Button
+        android:id="@+id/btn_read_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="讀取"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_demo_info"
@@ -15,7 +23,7 @@
         android:text="讀取Asset檔案"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_file" />
 
     <TextView
         android:id="@+id/file_content"
@@ -23,9 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        tools:text="檔案內容"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_demo_info" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_demo_info"
+        tools:text="檔案內容" />
 
 </android.support.constraint.ConstraintLayout>

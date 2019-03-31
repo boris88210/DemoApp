@@ -1,15 +1,9 @@
 package com.development.borissu.demoapp.activities;
 
-import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
-import android.text.Selection;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -19,6 +13,7 @@ import butterknife.OnClick;
 
 import com.development.borissu.demoapp.R;
 import com.development.borissu.demoapp.dataModel.SelectionItem;
+import com.development.borissu.demoapp.utilities.AssertFileLoader;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 
@@ -126,4 +121,9 @@ public class MainActivity extends BaseNavigationActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 }

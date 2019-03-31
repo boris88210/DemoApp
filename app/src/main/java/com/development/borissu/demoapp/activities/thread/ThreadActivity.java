@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.development.borissu.demoapp.AsyncTask.ApiTask;
+import com.development.borissu.demoapp.asyncTask.ApiTask;
 import com.development.borissu.demoapp.DemoApp;
 import com.development.borissu.demoapp.R;
 import com.development.borissu.demoapp.activities.BaseActivity;

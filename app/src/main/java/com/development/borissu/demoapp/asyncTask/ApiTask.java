@@ -1,8 +1,7 @@
-package com.development.borissu.demoapp.AsyncTask;
+package com.development.borissu.demoapp.asyncTask;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.development.borissu.demoapp.DemoApp;
 

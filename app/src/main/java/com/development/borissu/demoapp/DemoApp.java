@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.development.borissu.demoapp.AsyncTask.ApiTask;
+import com.development.borissu.demoapp.asyncTask.ApiTask;
 import com.development.borissu.demoapp.activities.MainActivity;
 
 import java.util.ArrayList;
